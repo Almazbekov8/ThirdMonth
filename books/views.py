@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from datetime import datetime
+import random
 
 def about_me_view(request):
     if request.method == 'GET':
@@ -9,9 +10,11 @@ def about_me_view(request):
         
 def current_time_view(request):
     if request.method == 'GET':
+        
         now = datetime.now()
         time_str = now.strftime("%H:%M")
         hours, minutes = map(int, time_str.split(":"))
+        
         if hours < 12:
             message = "Сейчас утро"
         elif 12 <= hours < 15:
@@ -22,6 +25,17 @@ def current_time_view(request):
             message = "Сейчас ночь"
 
         return HttpResponse(f"Время: {time_str}. {message}")
+
+def random_quote_view(request):
+    quotes = [
+        "«Не так страшен враг, как равнодушие друзей.» — Виктор Гюго",
+        "«Быть можно дельным человеком и думать о красе ногтей.» — Александр Пушкин",
+        "«Человек рожден для счастья, как птица для полета.» — Антон Чехов",
+        "«Свобода ничего не стоит, если она не включает в себя свободу ошибаться.» — Махатма Ганди",
+        "«Счастье — это когда то, что ты думаешь, говоришь и делаешь, находится в гармонии.» — Лев Толстой",
+    ]
+    phrase = random.choice(quotes)
+    return HttpResponse(phrase)
 
 
     
