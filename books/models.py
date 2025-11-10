@@ -1,6 +1,15 @@
 from django.db import models
 
 class Book(models.Model):
+    
+    GENRE = (
+        ('comedy', 'Комедия'),
+        ('drama', 'Драма'),
+        ('horror', 'Ужасы'),
+        ('sci-fi', 'Научная фантастика'),
+        ('romance', 'Романтика'),
+    )
+    
     title = models.CharField(max_length=150)
     author = models.CharField(max_length=100)
     description = models.TextField()
