@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_list_or_404
 from django.http import HttpResponse
 from datetime import datetime
+from . import models
 import random
 
 def about_me_view(request):
@@ -36,6 +37,22 @@ def random_quote_view(request):
     ]
     phrase = random.choice(quotes)
     return HttpResponse(phrase)
+
+def book_list_view(request):
+    if request.method == 'GET':
+        books = models.Book.objects.all()
+        context = {
+            'books': books
+        }
+        return render(request, template_name ='book_list.html', context=context)
+
+def book_detail_view(request, id):
+    if request.method == 'GET':
+        book = get_list_or_404(models.Book, id=id)
+        context = {
+            'book': book
+        }
+        return render(request, template_name='book_detail.html', context=context)
 
 
     
