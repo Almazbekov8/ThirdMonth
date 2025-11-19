@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from datetime import datetime
 from . import models
 import random
+from django.db.models import Avg
 
 def about_me_view(request):
     if request.method == 'GET':
@@ -49,8 +50,11 @@ def book_list_view(request):
 def book_detail_view(request, id):
     if request.method == 'GET':
         book = get_object_or_404(models.Book, id=id)
+        avg_rating = book.reviews.aggregate(Avg('mark'))['mark__avg']
+        
         context = {
-            'book': book
+            'book': book,
+            'avg_rating': avg_rating
         }
         return render(request, template_name='books/book_detail.html', context=context)
 
