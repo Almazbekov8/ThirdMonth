@@ -28,7 +28,21 @@
     <p>Добавлено: {{ book.created_at }}</p>
 
     <br>
-    <a href="/books/">Назад к списку</a>
+    <h2>Отзывы</h2>
+ 
+    <h3>Общая оценка - "вставить значение переменной тут"</h3>
+     
+    <ol>
+        <!-- Вставить цикл тут -->
+         {% for i in book.reviews.all %}
+        <li>
+            <h2>Имя - {{i.user_name}}</h2>
+            <p>Оценка - {{i.mark}}</p>
+            <p>Комментарий - {{i.comment}}</p>
+        </li>
+        {% endfor %}
+        <!-- Закрыть цикл тут -->
+    </ol>
     {% include 'footer.html' %}
 </body>
 </html>

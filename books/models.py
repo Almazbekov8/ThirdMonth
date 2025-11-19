@@ -27,3 +27,21 @@ class Book(models.Model):
     class Meta:
         verbose_name = "Book"
         verbose_name_plural = "Books"
+
+class Review(models.Model):
+    MARK =(('1', '1 - Очень плохо'),
+          ('2', '2 - Плохо'),
+          ('3', '3 - Средне'),
+          ('4', '4 - Хорошо'),
+          ('5', '5 - Отлично'),
+    )
+    
+    book_choice = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='reviews', verbose_name='Книга')
+    user_name = models.CharField(max_length=100, verbose_name='Имя пользователя')
+    mark = models.CharField(choices=MARK, verbose_name='Оценка')
+    comment = models.TextField(verbose_name='Комментарий')
+    
+    def __str__(self):
+                return f"Отзыв от {self.user_name} - Книга: {self.book_choice.title}, Оценка: {self.mark}"
+    
+    
