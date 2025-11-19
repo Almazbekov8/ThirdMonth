@@ -6,7 +6,7 @@
     <title>{{ book.title }}</title>
 </head>
 <body>
-
+    {% include 'header.html' %}
     <h1>{{ book.title }}</h1>
 
     <p><strong>Автор:</strong> {{ book.author }}</p>
@@ -27,6 +27,6 @@
 
     <br>
     <a href="/books/">Назад к списку</a>
-
+    {% include 'footer.html' %}
 </body>
 </html>
