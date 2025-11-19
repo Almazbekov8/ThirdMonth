@@ -20,7 +20,7 @@
             <p>Страниц: {{ i.pages }}</p>
             <p>Дата публикации: {{ i.published_date }}</p>
 
-            <a href="/books/{{ i.id }}/">Подробнее</a>
+            <a href="/book_list{{ i.id }}/">Подробнее</a>
         </li>
         <hr>
         {% endfor %}
