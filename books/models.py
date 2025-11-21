@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Book(models.Model):
     
@@ -37,11 +38,11 @@ class Review(models.Model):
     )
     
     book_choice = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='reviews', verbose_name='Книга')
-    user_name = models.CharField(max_length=100, verbose_name='Имя пользователя')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
     mark = models.CharField(choices=MARK, verbose_name='Оценка')
     comment = models.TextField(verbose_name='Комментарий')
     
     def __str__(self):
-                return f"Отзыв от {self.user_name} - Книга: {self.book_choice.title}, Оценка: {self.mark}"
+                return f"Отзыв от {self.user.username} - Книга: {self.book_choice.title}, Оценка: {self.mark}"
     
     

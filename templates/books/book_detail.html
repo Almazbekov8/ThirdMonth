@@ -42,7 +42,7 @@
         <!-- Вставить цикл тут -->
          {% for i in book.reviews.all %}
         <li>
-            <h2>Имя - {{i.user_name}}</h2>
+            <h2>Имя - {{i.user.username}}</h2>
             <p>Оценка - {{i.mark}}</p>
             <p>Комментарий - {{i.comment}}</p>
         </li>
